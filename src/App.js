@@ -1,6 +1,7 @@
-import TodoList from "./Components/TodoList/TodoList";
-import './App.scss';
+import './App.css';
+import TodoList from './components/TodoList'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'font-awesome/css/font-awesome.min.css'
 
 function App() {
   return (
