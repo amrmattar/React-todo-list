@@ -21,6 +21,7 @@ const CreateTaskPopup = ({modal, toggle, save}) => {
     const handleSave = (e) => {
         e.preventDefault()
         let taskObj = {}
+        taskObj["key"] = Math.floor(1000 + Math.random() * 9000)
         taskObj["Name"] = taskName
         taskObj["Description"] = description
         save(taskObj)
