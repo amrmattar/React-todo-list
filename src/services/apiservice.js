@@ -10,9 +10,9 @@ export function addTask(task) {
 }
 
 export function updateTask(id, task) {
-    return axios.put(apiUrl + "/" + id, task);
+    return axios.patch(apiUrl + "/" + id, task);
 }
 
-export function deleteTask(id) {
+export function deleteTaskById(id) {
     return axios.delete(apiUrl + "/" + id);
 }

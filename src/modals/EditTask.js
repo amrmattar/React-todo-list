@@ -19,15 +19,15 @@ const EditTaskPopup = ({modal, toggle, updateTask, taskObj}) => {
     }
 
     useEffect(() => {
-        setTaskName(taskObj.Name)
-        setDescription(taskObj.Description)
+        setTaskName(taskObj.title)
+        setDescription(taskObj.description)
     },[])
 
     const handleUpdate = (e) => {
         e.preventDefault();
         let tempObj = {}
-        tempObj['Name'] = taskName
-        tempObj['Description'] = description
+        tempObj['title'] = taskName
+        tempObj['description'] = description
         updateTask(tempObj)
     }
 

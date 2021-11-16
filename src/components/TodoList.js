@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import CreateTask from '../modals/CreateTask'
 import Card from './Card';
-import axios from 'axios';
 import {
     addTask,
     getTasks,
     updateTask,
-    deleteTask,
+    deleteTaskById,
 } from "../services/apiservice";
 
 const TodoList = () => {
@@ -19,39 +18,35 @@ const TodoList = () => {
         setTaskList(Tasks)
     })}, [])
 
-    const deleteTask = (index) => {
-        let tempList = taskList
-        tempList.splice(index, 1)
-        localStorage.setItem("taskList", JSON.stringify(tempList))
-        setTaskList(tempList)
+    const saveTask = (taskObj) => {
+        addTask(taskObj).then(res => {})
+        window.location.reload()
+        setTaskList(taskList)
+        setModal(false)
+    }
+
+    const updateListArray = (obj, id) => {
+        updateTask(id, obj).then(res => {})
         window.location.reload()
     }
 
-    const updateListArray = (obj, index) => {
-        let tempList = taskList
-        tempList[index] = obj
-        localStorage.setItem("taskList", JSON.stringify(tempList))
-        setTaskList(tempList)
+    const deleteTask = (id) => {
+        deleteTaskById(id).then(res => {})
         window.location.reload()
     }
+
 
     const toggle = () => {
         setModal(!modal);
     }
 
-    const saveTask = (taskObj) => {
-        let tempList = taskList
-        tempList.push(taskObj)
-        localStorage.setItem("taskList", JSON.stringify(tempList))
-        setTaskList(taskList)
-        setModal(false)
-    }
 
 
     return (
         <>
             <div className = "header text-center">
                 <h3>Todo List</h3>
+                {/* <input type="text" className = "form-control" value = {taskName} onChange = {handleChange} name = "taskName"/> */}
                 <button className = "btn btn-primary mt-2" onClick = {() => setModal(true)} >Create Task</button>
             </div>
             <div className = "task-container">
