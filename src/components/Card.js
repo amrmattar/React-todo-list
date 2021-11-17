@@ -3,7 +3,6 @@ import EditTask from "../modals/EditTask";
 
 const Card = ({ taskObj, index, deleteTask, updateListArray }) => {
   const [modal, setModal] = useState(false);
-
   const colors = [
     {
       primaryColor: "#5D93E1",
@@ -33,7 +32,7 @@ const Card = ({ taskObj, index, deleteTask, updateListArray }) => {
 
   const updateTask = (obj) => {
     updateListArray(obj, taskObj._id);
-    if (taskObj.title !== "" && taskObj.description !== "") {
+    if (obj.title !== "" && obj.description !== "") {
       setModal(false);
     }
   };

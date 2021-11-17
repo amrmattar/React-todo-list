@@ -14,7 +14,7 @@ const TodoList = () => {
   const [taskList, setTaskList] = useState([]);
 
   const handleChange = (e) => {
-    const {  value } = e.target;
+    const { value } = e.target;
     console.log(value);
     searchTask(value).then((res) => {
       const Tasks = res.data;
@@ -37,8 +37,7 @@ const TodoList = () => {
     addTask(taskObj).then((res) => {
       getTaskDuring();
     });
-    // console.log(taskObj);
-    if (taskObj.title !== "" && taskObj.description !=='') {
+    if (taskObj.title !== "" && taskObj.description !== "") {
       setModal(false);
     }
   };
@@ -53,7 +52,6 @@ const TodoList = () => {
     deleteTaskById(id).then((res) => {
       getTaskDuring();
     });
-
   };
 
   const toggle = () => {
