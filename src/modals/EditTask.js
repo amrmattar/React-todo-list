@@ -20,7 +20,7 @@ const EditTaskPopup = ({ modal, toggle, updateTask, taskObj }) => {
   useEffect(() => {
     settitle(taskObj.title);
     setDescription(taskObj.description);
-  }, []);
+  }, [taskObj]);
 
   const handleUpdate = (e) => {
     e.preventDefault();
