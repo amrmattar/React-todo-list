@@ -6,35 +6,28 @@ const CreateTaskPopup = ({modal, toggle, save}) => {
     const [description, setDescription] = useState('');
 
     const handleChange = (e) => {
-        
         const {name, value} = e.target
-
         if(name === "taskName"){
             setTaskName(value)
         }else{
             setDescription(value)
         }
-
-
     }
 
     const handleSave = (e) => {
         e.preventDefault()
         let taskObj = {}
-        // taskObj["key"] = Math.floor(1000 + Math.random() * 9000)
         taskObj["title"] = taskName
         taskObj["description"] = description
         save(taskObj)
-
     }
 
     return (
         <Modal isOpen={modal} toggle={toggle}>
             <ModalHeader toggle={toggle}>Create Task</ModalHeader>
             <ModalBody>
-            
                     <div className = "form-group">
-                        <label>Task Name</label>
+                        <label>Task Title</label>
                         <input type="text" className = "form-control" value = {taskName} onChange = {handleChange} name = "taskName"/>
                     </div>
                     <div className = "form-group">

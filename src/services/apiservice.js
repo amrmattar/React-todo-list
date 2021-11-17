@@ -4,6 +4,9 @@ const apiUrl = "http://localhost:8080/tasks";
 export function getTasks() {
     return axios.get(apiUrl);
 }
+export function searchTask(search) {
+    return axios.get(apiUrl + "?search=" + search);
+}
 
 export function addTask(task) {
     return axios.post(apiUrl, task);
