@@ -11,47 +11,49 @@ import {
 
 const TodoList = () => {
   const [modal, setModal] = useState(false);
-  // const [taskSearch, setTaskSearch] = useState('');
   const [taskList, setTaskList] = useState([]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    searchTask(value).then((res) => {
-        const Tasks = res.data;
-        setTaskList(Tasks);
-    });
+    const {  value } = e.target;
     console.log(value);
+    searchTask(value).then((res) => {
+      const Tasks = res.data;
+      setTaskList(Tasks);
+    });
   };
 
-  useEffect(() => {
+  const getTaskDuring = () => {
     getTasks().then((res) => {
       const Tasks = res.data;
       setTaskList(Tasks);
     });
+  };
+
+  useEffect(() => {
+    getTaskDuring();
   }, []);
 
   const saveTask = (taskObj) => {
     addTask(taskObj).then((res) => {
-        getTasks().then((res) => {
-          const Tasks = res.data;
-          setTaskList(Tasks);
-          console.log(Tasks);
-        });
+      getTaskDuring();
     });
-    setModal(false);
+    // console.log(taskObj);
+    if (taskObj.title !== "" && taskObj.description !=='') {
+      setModal(false);
+    }
   };
 
   const updateListArray = (obj, id) => {
     updateTask(id, obj).then((res) => {
-      const Tasks = res.data;
-      setTaskList(Tasks);
+      getTaskDuring();
     });
-    window.location.reload();
   };
 
   const deleteTask = (id) => {
-    deleteTaskById(id).then((res) => {});
-    window.location.reload();
+    deleteTaskById(id).then((res) => {
+      getTaskDuring();
+    });
+
   };
 
   const toggle = () => {
@@ -72,7 +74,6 @@ const TodoList = () => {
               onChange={handleChange}
               name="taskSearch"
             />
-            <button className="btn btn-success search-btn">Search</button>
           </div>
         </div>
       </div>

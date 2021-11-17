@@ -2,30 +2,47 @@ import React, { useState, useEffect } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 const EditTaskPopup = ({ modal, toggle, updateTask, taskObj }) => {
-  const [taskName, setTaskName] = useState("");
+  const [title, settitle] = useState("");
   const [description, setDescription] = useState("");
+  const [titleErr, setTitleErr] = useState("");
+  const [descriptionErr, setDescriptionErr] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "taskName") {
-      setTaskName(value);
+    if (name === "title") {
+      settitle(value);
     } else {
       setDescription(value);
     }
   };
 
   useEffect(() => {
-    setTaskName(taskObj.title);
+    settitle(taskObj.title);
     setDescription(taskObj.description);
   }, []);
 
   const handleUpdate = (e) => {
     e.preventDefault();
     let tempObj = {};
-    tempObj["title"] = taskName;
+    tempObj["title"] = title;
     tempObj["description"] = description;
     updateTask(tempObj);
+    if (title.length < 1 && description.length < 1) {
+      setTitleErr("Title Field is required!");
+      setDescriptionErr("Title Field is required!");
+    } else if (title.length < 1) {
+      setTitleErr("Title Field is required!");
+      setDescriptionErr("");
+    } else if (description.length < 1) {
+      setTitleErr("");
+      setDescriptionErr("Title Field is required!");
+    } else {
+      setTitleErr("");
+      setDescriptionErr("");
+      setDescription("");
+      settitle("");
+    }
   };
 
   return (
@@ -37,10 +54,11 @@ const EditTaskPopup = ({ modal, toggle, updateTask, taskObj }) => {
           <input
             type="text"
             className="form-control"
-            value={taskName}
+            value={title}
             onChange={handleChange}
-            name="taskName"
+            name="title"
           />
+          <div className="errormsg">{titleErr}</div>
         </div>
         <div className="form-group">
           <label>Description</label>
@@ -51,6 +69,7 @@ const EditTaskPopup = ({ modal, toggle, updateTask, taskObj }) => {
             onChange={handleChange}
             name="description"
           ></textarea>
+          <div className="errormsg">{descriptionErr}</div>
         </div>
       </ModalBody>
       <ModalFooter>

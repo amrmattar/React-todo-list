@@ -15,19 +15,16 @@
 .search{
   display: flex;
   line-height: 50px;
-  width: 360px;
+  width: 400px;
   input{
     margin-top: 6px;
-    width: 250px;
-  }
-  .search-btn{
-    width: 90px;
-    height: 38px;
-    display: inline;
-    margin: 6px;
+    width: 381px;
   }
 }
-
+.errormsg{
+  color: red;
+  font-size: 0.8rem;
+}
 .card-container{
   height: 300px;
   width: 300px;
@@ -37,18 +34,22 @@
 .card-wrapper{
   width: calc(23%); 
   min-width: 250px;
-  height: 220px; 
+  height: 230px; 
   border-radius: 0px 0px 10px 10px;
   box-shadow: 0px 3px 10px #A5A5A5;
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  i{
+    font-size: 1.1rem;
+  }
 }
 .create-btn{
   position: absolute;
   right: 0px;
   background-color: #0c0034;
   color: #fff;
+  z-index: 1;
   &:hover{
     background-color: #1e007e;
   }
@@ -71,17 +72,18 @@
   position: relative;
 }
 .card-content{
-  height: 120px;
+  height: 115px;
   overflow: auto;
 }
 .card-header{
   margin-top: 0px;
   margin-bottom: 10px;
   width: auto;
-  height: 30px;
+  height: 40px;
   padding: 4px  !important;
   text-align: center;
   font-weight: 600;
+  font-size: 1.2rem;
 }
 
 .task-container{
@@ -93,6 +95,10 @@
   flex-wrap: wrap;
   background-color: #F6F7F8;
   padding: 60px 50px 20px 50px;
+}
+
+.form-control {
+    line-height: 2.5;
 }
 
 ::-webkit-scrollbar {
